@@ -24,7 +24,7 @@ public class Dealership {
         return inventory;
     }
 
-    
+
     public List<Vehicle> getVehiclesByPrice(double min, double max) {
         return null;
     }
