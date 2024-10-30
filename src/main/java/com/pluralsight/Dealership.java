@@ -30,10 +30,6 @@ public class Dealership {
     }
 
 
-    public List<Vehicle> getVehiclesByType(String vehicleType) {
-        return null;
-    }
-
     public void removeVehicle(Vehicle vehicle) {
     }
 
@@ -77,6 +73,16 @@ public class Dealership {
         return result;
     }
 
+    public List<Vehicle> getVehiclesByType(String vehicleType) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getVehicleType().equalsIgnoreCase(vehicleType)) {
+                result.add(vehicle);
+            }
+        }
+        return result;
+
+    }
 }
 
 

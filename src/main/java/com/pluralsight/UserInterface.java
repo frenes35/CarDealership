@@ -23,6 +23,7 @@ public class UserInterface {
             System.out.println("3 - Find vehicles by year range");
             System.out.println("4 - Find vehicles by color");
             System.out.println("5 - Find vehicles by mileage range");
+            System.out.println("6 - Find vehicles by type (car, truck, SUV, van)");
             System.out.println("99 - Quit");
             int choice = scanner.nextInt();
 
@@ -41,6 +42,9 @@ public class UserInterface {
                     break;
                 case 5:
                     processGetByMileageRequest(scanner);
+                    break;
+                case 6:
+                    processGetByVehicleTypeRequest(scanner);
                     break;
                 case 99:
                     System.out.println("Exiting...");
@@ -93,6 +97,12 @@ public class UserInterface {
         System.out.print("Enter maximum mileage: ");
         int max = scanner.nextInt();
         List<Vehicle> vehicles = dealership.getVehiclesByMileage(min, max);
+        displayVehicles(vehicles);
+    }
+    private void processGetByVehicleTypeRequest(Scanner scanner) {
+        System.out.print("Enter vehicle type (car, truck, SUV, van): ");
+        String vehicleType = scanner.next();
+        List<Vehicle> vehicles = dealership.getVehiclesByType(vehicleType);
         displayVehicles(vehicles);
     }
 }
