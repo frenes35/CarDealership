@@ -21,6 +21,7 @@ public class UserInterface {
             System.out.println("1 - List All Vehicles");
             System.out.println("2 - Find vehicles by make/model");
             System.out.println("3 - Find vehicles by year range");
+            System.out.println("4 - Find vehicles by color");
             System.out.println("99 - Quit");
             int choice = scanner.nextInt();
 
@@ -33,6 +34,9 @@ public class UserInterface {
                     break;
                 case 3:
                     processGetByYearRequest(scanner);
+                    break;
+                case 4:
+                    processGetByColorRequest(scanner);
                     break;
                 case 99:
                     System.out.println("Exiting...");
@@ -70,6 +74,13 @@ public class UserInterface {
         System.out.print("Enter maximum year: ");
         int max = scanner.nextInt();
         List<Vehicle> vehicles = dealership.getVehiclesByYear(min, max);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByColorRequest(Scanner scanner) {
+        System.out.print("Enter color: ");
+        String color = scanner.next();
+        List<Vehicle> vehicles = dealership.getVehiclesByColor(color);
         displayVehicles(vehicles);
     }
 }
