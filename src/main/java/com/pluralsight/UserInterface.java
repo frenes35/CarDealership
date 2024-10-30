@@ -19,12 +19,16 @@ public class UserInterface {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1 - List All Vehicles");
+            System.out.println("2 - Find vehicles by make/model");
             System.out.println("99 - Quit");
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
                     processGetAllVehiclesRequest();
+                    break;
+                case 2:
+                    processGetByMakeModelRequest(scanner);
                     break;
                 case 99:
                     System.out.println("Exiting...");
@@ -44,5 +48,15 @@ public class UserInterface {
         for (Vehicle vehicle : vehicles) {
             System.out.println("VIN: " + vehicle.getVin() + ", Make: " + vehicle.getMake() + ", Model: " + vehicle.getModel() + ", Price: " + vehicle.getPrice());
         }
+    }
+
+    private void processGetByMakeModelRequest(Scanner scanner) {
+        System.out.print("Enter make: ");
+        String make = scanner.next();
+        System.out.print("Enter model: ");
+        String model = scanner.next();
+
+        List<Vehicle> vehicles = dealership.getVehiclesByMakeModel(make, model);
+        displayVehicles(vehicles);
     }
 }
