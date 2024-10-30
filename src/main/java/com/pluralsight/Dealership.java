@@ -16,17 +16,36 @@ public class Dealership {
         this.inventory = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public void addVehicle(Vehicle vehicle) {
         inventory.add(vehicle);
     }
 
     public List<Vehicle> getAllVehicles() {
         return inventory;
-    }
-
-
-    public List<Vehicle> getVehiclesByPrice(double min, double max) {
-        return null;
     }
 
 
@@ -82,6 +101,16 @@ public class Dealership {
         }
         return result;
 
+    }
+
+    public List<Vehicle> getVehiclesByPrice(double min, double max) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getPrice() >= min && vehicle.getPrice() <= max) {
+                result.add(vehicle);
+            }
+        }
+        return result;
     }
 }
 

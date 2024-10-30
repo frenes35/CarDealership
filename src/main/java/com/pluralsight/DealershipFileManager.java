@@ -17,16 +17,7 @@ public class DealershipFileManager {
                 String vehicleLine;
                 while ((vehicleLine = br.readLine()) != null) {
                     String[] vehicleParts = vehicleLine.split("\\|");
-                    Vehicle vehicle = new Vehicle(
-                            Integer.parseInt(vehicleParts[0]),
-                            Integer.parseInt(vehicleParts[1]),
-                            vehicleParts[2],
-                            vehicleParts[3],
-                            vehicleParts[4],
-                            vehicleParts[5],
-                            Integer.parseInt(vehicleParts[6]),
-                            Double.parseDouble(vehicleParts[7])
-                    );
+                    Vehicle vehicle = new Vehicle(Integer.parseInt(vehicleParts[0]), Integer.parseInt(vehicleParts[1]), vehicleParts[2], vehicleParts[3], vehicleParts[4], vehicleParts[5], Integer.parseInt(vehicleParts[6]), Double.parseDouble(vehicleParts[7]));
                     dealership.addVehicle(vehicle);
                 }
             }
@@ -37,7 +28,27 @@ public class DealershipFileManager {
     }
 
     public void saveDealership(Dealership dealership) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("dealership.csv" ))) {
+            // Write dealership info
+            bufferedWriter.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone());
+            bufferedWriter.newLine();
 
+            // Write each vehicle
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+                bufferedWriter.write(vehicle.getVin() + "|" +
+                        vehicle.getYear() + "|" + vehicle.getMake() +
+                        "|" + vehicle.getModel() + "|" + vehicle.getVehicleType() +
+                        "|" + vehicle.getColor() + "|" + vehicle.getOdometer() +
+                        "|" + vehicle.getPrice());
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+            System.out.println("Dealership data saved successfully.");
+        } catch (IOException e) {
+            System.err.println("There was an error saving dealership data.");
+            e.printStackTrace();
+        }
     }
+
 }
 
