@@ -30,10 +30,6 @@ public class Dealership {
     }
 
 
-    public List<Vehicle> getVehiclesByYear(int min, int max) {
-        return null;
-    }
-
     public List<Vehicle> getVehiclesByColor(String color) {
         return null;
     }
@@ -53,6 +49,16 @@ public class Dealership {
         List<Vehicle> result = new ArrayList<>();
         for (Vehicle vehicle : inventory) {
             if (vehicle.getMake().equalsIgnoreCase(make) && vehicle.getModel().equalsIgnoreCase(model)) {
+                result.add(vehicle);
+            }
+        }
+        return result;
+    }
+
+    public List<Vehicle> getVehiclesByYear(int min, int max) {
+        List<Vehicle> result = new ArrayList<>();
+        for (Vehicle vehicle : inventory) {
+            if (vehicle.getYear() >= min && vehicle.getYear() <= max) {
                 result.add(vehicle);
             }
         }

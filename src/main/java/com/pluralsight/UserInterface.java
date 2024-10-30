@@ -20,6 +20,7 @@ public class UserInterface {
         while (true) {
             System.out.println("1 - List All Vehicles");
             System.out.println("2 - Find vehicles by make/model");
+            System.out.println("3 - Find vehicles by year range");
             System.out.println("99 - Quit");
             int choice = scanner.nextInt();
 
@@ -29,6 +30,9 @@ public class UserInterface {
                     break;
                 case 2:
                     processGetByMakeModelRequest(scanner);
+                    break;
+                case 3:
+                    processGetByYearRequest(scanner);
                     break;
                 case 99:
                     System.out.println("Exiting...");
@@ -57,6 +61,15 @@ public class UserInterface {
         String model = scanner.next();
 
         List<Vehicle> vehicles = dealership.getVehiclesByMakeModel(make, model);
+        displayVehicles(vehicles);
+    }
+
+    private void processGetByYearRequest(Scanner scanner) {
+        System.out.print("Enter minimum year: ");
+        int min = scanner.nextInt();
+        System.out.print("Enter maximum year: ");
+        int max = scanner.nextInt();
+        List<Vehicle> vehicles = dealership.getVehiclesByYear(min, max);
         displayVehicles(vehicles);
     }
 }
