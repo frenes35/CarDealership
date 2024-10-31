@@ -45,7 +45,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-- 
+- ![Find vehicles within a price range.png](imgs%2FFind%20vehicles%20within%20a%20price%20range.png)
 
 ## Future Work
 
